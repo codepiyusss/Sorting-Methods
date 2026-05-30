@@ -59,8 +59,4 @@ Through this project, I learned:
 * Working with functions and file handling
 * Basic complexity analysis
 
-## Author
 
-Piyush Tiwari
-B.Tech CSE
-Ramchandra Chandravanshi University
