@@ -1,5 +1,6 @@
 import time
 
+# Bubble Sort
 def bubble_sort(arr):
     a = arr.copy()
     n = len(a)
@@ -11,6 +12,8 @@ def bubble_sort(arr):
 
     return a
 
+
+# Selection Sort
 def selection_sort(arr):
     a = arr.copy()
     n = len(a)
@@ -27,6 +30,7 @@ def selection_sort(arr):
     return a
 
 
+# Insertion Sort
 def insertion_sort(arr):
     a = arr.copy()
 
@@ -43,21 +47,27 @@ def insertion_sort(arr):
     return a
 
 
+# Merge Sort
 def merge_sort(arr):
     if len(arr) <= 1:
         return arr
 
     mid = len(arr) // 2
+
     left = merge_sort(arr[:mid])
     right = merge_sort(arr[mid:])
 
     result = []
-    i = j = 0
+
+    i = 0
+    j = 0
 
     while i < len(left) and j < len(right):
+
         if left[i] < right[j]:
             result.append(left[i])
             i += 1
+
         else:
             result.append(right[j])
             j += 1
@@ -68,6 +78,7 @@ def merge_sort(arr):
     return result
 
 
+# Quick Sort
 def quick_sort(arr):
     if len(arr) <= 1:
         return arr
@@ -80,12 +91,55 @@ def quick_sort(arr):
 
     return quick_sort(left) + middle + quick_sort(right)
 
-# User Input
-choice = 0
+
+# Save Result
+def save_result(method, arr, result, execution_time):
+    file = open("sorting_results.txt", "a")
+
+    file.write("\n====================================\n")
+    file.write("Sorting Method : " + method + "\n")
+    file.write("Input Array    : " + str(arr) + "\n")
+    file.write("Sorted Array   : " + str(result) + "\n")
+    file.write("Execution Time : " + str(execution_time) + " seconds\n")
+
+    file.close()
+
+
+# Compare All Algorithms
+def compare_algorithms(arr):
+
+    print("\n----- Performance Comparison -----")
+
+    algorithms = [
+        ("Bubble Sort", bubble_sort),
+        ("Selection Sort", selection_sort),
+        ("Insertion Sort", insertion_sort),
+        ("Merge Sort", merge_sort),
+        ("Quick Sort", quick_sort)
+    ]
+
+    for name, algo in algorithms:
+
+        start = time.perf_counter()
+        algo(arr)
+        end = time.perf_counter()
+
+        print(f"{name:<15} {(end-start):.8f} sec")
+
+
+# Main Function
 def execution():
-    arr = list(map(int, input("Enter array elements separated by space: ").split()))
+
+    arr = list(map(int, input("\nEnter array elements separated by space: ").split()))
 
     print("\nOriginal Array:", arr)
+
+    print("\nArray Statistics")
+    print("Size    :", len(arr))
+    print("Minimum :", min(arr))
+    print("Maximum :", max(arr))
+    print("Sum     :", sum(arr))
+    print("Average :", round(sum(arr) / len(arr), 2))
 
     print("\nChoose Sorting Method")
     print("1. Bubble Sort")
@@ -93,47 +147,73 @@ def execution():
     print("3. Insertion Sort")
     print("4. Merge Sort")
     print("5. Quick Sort")
-
+    print("6. Compare All Algorithms")
 
     choice = int(input("Enter your choice: "))
+
+    if choice == 6:
+        compare_algorithms(arr)
+        return
 
     start_time = time.perf_counter()
 
     if choice == 1:
         result = bubble_sort(arr)
-        complexity = "Best: O(n), Average: O(n²), Worst: O(n²)"
+        method = "Bubble Sort"
+        time_complexity = "Best: O(n), Average: O(n²), Worst: O(n²)"
+        space_complexity = "O(1)"
 
     elif choice == 2:
         result = selection_sort(arr)
-        complexity = "Best: O(n²), Average: O(n²), Worst: O(n²)"
+        method = "Selection Sort"
+        time_complexity = "Best: O(n²), Average: O(n²), Worst: O(n²)"
+        space_complexity = "O(1)"
 
     elif choice == 3:
         result = insertion_sort(arr)
-        complexity = "Best: O(n), Average: O(n²), Worst: O(n²)"
+        method = "Insertion Sort"
+        time_complexity = "Best: O(n), Average: O(n²), Worst: O(n²)"
+        space_complexity = "O(1)"
 
     elif choice == 4:
         result = merge_sort(arr)
-        complexity = "Best: O(n log n), Average: O(n log n), Worst: O(n log n)"
+        method = "Merge Sort"
+        time_complexity = "Best: O(n log n), Average: O(n log n), Worst: O(n log n)"
+        space_complexity = "O(n)"
 
     elif choice == 5:
         result = quick_sort(arr)
-        complexity = "Best: O(n log n), Average: O(n log n), Worst: O(n²)"
+        method = "Quick Sort"
+        time_complexity = "Best: O(n log n), Average: O(n log n), Worst: O(n²)"
+        space_complexity = "O(log n)"
 
     else:
-        print("Invalid Input")
+        print("Invalid Choice!")
         return
 
     end_time = time.perf_counter()
 
-    print("\nSorted Array:", result)
-    print("Time Complexity:", complexity)
-    print(f"Execution Time: {(end_time - start_time):.8f} seconds")
+    execution_time = round(end_time - start_time, 8)
 
-execution()
+    print("\nSorted Array :", result)
+    print("Time Complexity  :", time_complexity)
+    print("Space Complexity :", space_complexity)
+    print("Execution Time   :", execution_time, "seconds")
+
+    save_result(method, arr, result, execution_time)
+
+    print("\nResult saved to sorting_results.txt")
 
 
-sort_more = input("Do You wanna Sort more?(y/n): ")
-if sort_more.lower() == "y":
-    while True:
-        execution()
+# Program Loop
+print("===== SORTING ALGORITHM ANALYZER =====")
 
+while True:
+
+    execution()
+
+    again = input("\nDo you want to sort another array? (y/n): ")
+
+    if again.lower() != "y":
+        print("\nThank you for using Sorting Algorithm Analyzer!")
+        break
