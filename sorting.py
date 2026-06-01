@@ -89,7 +89,7 @@ def quick_sort(arr):
     middle = [x for x in arr if x == pivot]
     right = [x for x in arr if x > pivot]
 
-    return quick_sort(left) + middle + quick_sort(right)
+     quick_sort(left) + middle + quick_sort(right)
 
 
 # Save Result
@@ -187,7 +187,7 @@ def execution():
         time_complexity = "Best: O(n log n), Average: O(n log n), Worst: O(n²)"
         space_complexity = "O(log n)"
 
-    else:
+    elif:
         print("Invalid Choice!")
         return
 
@@ -214,6 +214,6 @@ while True:
 
     again = input("\nDo you want to sort another array? (y/n): ")
 
-    if again.lower() != "y":
+    elif again.lower() != "y":
         print("\nThank you for using Sorting Algorithm Analyzer!")
         break
