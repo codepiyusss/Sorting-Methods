@@ -19,22 +19,6 @@ The project was created for learning and comparing the behavior of various sorti
 * Array statistics (size, minimum, maximum, average)
 * Save sorting results to a text file
 
-## Technologies Used
-
-* Python 3
-* Time module
-
-## How to Run
-
-1. Clone the repository or download the source code.
-2. Open a terminal in the project folder.
-3. Run the program using:
-
-python sorting.py
-
-4. Enter array elements separated by spaces.
-5. Select a sorting algorithm from the menu.
-
 ## Example
 
 Input:
