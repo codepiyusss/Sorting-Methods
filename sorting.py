@@ -106,7 +106,7 @@ def save_result(method, arr, result, execution_time):
 # Compare All Algorithms
 def compare_algorithms(arr):
 
-    print("\n----- Performance Comparison -----")
+    print("\nPerformance Comparison")
 
     algorithms = [
         ("Bubble Sort", bubble_sort),
@@ -204,7 +204,7 @@ def execution():
 
 
 # Program Loop
-print("===== SORTING ALGORITHM ANALYZER =====")
+print(" SORTING ALGORITHM ANALYZER ")
 
 while True:
 
