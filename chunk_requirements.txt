@@ -1,1 +1,7 @@
-all to add here
+To Print:
+*****
+*   *
+*   *
+*   *
+*****
+using "Python"
