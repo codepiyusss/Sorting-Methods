@@ -15,3 +15,6 @@ for i in range(1,6):
     else:
       print(" ", end="")
   print()
+
+def print_fahh():
+  print("Fahhhh!")
